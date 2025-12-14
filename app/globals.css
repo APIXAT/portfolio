@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: #0E0E10;
+  color: #FFFFFF;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#__next {
+  height: 100%;
+}
+
+/* Brands Marquee Animation */
+.marquee-container {
+  animation: marquee 30s linear infinite;
+  display: flex;
+  width: fit-content;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause on hover */
+.marquee-container:hover {
+  animation-play-state: paused;
+}
+
+/* Skill Name Circular Rotation Animation */
+.skill-name-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  animation: rotate-orbit 20s linear infinite;
+  pointer-events: none;
+}
+
+.skill-name-orbit.paused {
+  animation-play-state: paused;
+}
+
+.skill-name-text {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  /* Position text at ~45% from center (outside the icon area) */
+  transform: translateX(-50%) translateY(-45%);
+  white-space: nowrap;
+  will-change: transform;
+}
+
+@keyframes rotate-orbit {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Counter-rotate text to keep it upright and readable */
+.skill-name-orbit .skill-name-text {
+  animation: rotate-text-counter 20s linear infinite;
+}
+
+.skill-name-orbit.paused .skill-name-text {
+  animation-play-state: paused;
+}
+
+@keyframes rotate-text-counter {
+  0% {
+    transform: translateX(-50%) translateY(-45%) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-45%) rotate(-360deg);
+  }
+}
+
+
